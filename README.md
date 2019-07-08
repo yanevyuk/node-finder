@@ -25,11 +25,14 @@ are accessible!
   it will return an array that contains all those nodes. This will cause the plugin to give out a warning about it.
   If you give the second argument as `true` it will suppress that warning.
  
+ ---
 
 ```gdscript
   NodeFinder.register( key: String, node: Node )
 ```
   Registers this node under this key. If the key has been registered before, it will push a warning.
+  
+---
 
 ```gdscript
   NodeFinder.get( key: String, suppress: bool = false `optional`)
@@ -37,12 +40,15 @@ are accessible!
   Retrieves the node that is registered to this key. Pushes a warning if key doesn't exist. If the key has been found in 
   multiple registeries for any reason, it will return an array which contains all those nodes instead.
   
+---
 
 ```gdscript
   NodeFinder.override( key: String, node: Node )
 ```
   Registers this node under this key. If the key has been registered before, it will override.
-  
+ 
+---
+
 ```gdscript
   NodeFinder.unregister( key: String, root: Node = null `optional`)
 ```
