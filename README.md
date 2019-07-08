@@ -1,3 +1,13 @@
+
+<img float= "left" align="left" width="120" height="120" margin-right="100" src="https://github.com/Tearfalas/node-finder/blob/master/icon.png">
+
+# Turgy's NodeFinder Plugin
+
+
+Adds a singleton named NodeFinder to make accessing nodes through GDScript easier.
+
+---
+
 ## Installation
 
   1. Install this plugin through the Asset Library in Godot or paste the contents of this repository to your projects folder.
@@ -34,7 +44,7 @@ are accessible!
   
 ---
 
-```gdscript
+```gdscrip
   NodeFinder.get( key: String, suppress: bool = false `optional`)
 ```
   Retrieves the node that is registered to this key. Pushes a warning if key doesn't exist. If the key has been found in 
