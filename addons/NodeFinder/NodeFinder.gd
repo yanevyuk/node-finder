@@ -109,13 +109,34 @@ func unregister(key: String, root: Node = null):
 		return
 	erase_registry(scene, key)
 
-var tim = 0
-func _process(delta):
-	tim += delta
-	if tim>1:
-		tim = tim-1
-		print("-----")
-		print(SCENES)
-		print(NODES)
-		print("-----")
+var finder = []
+#DO NOT USE MANUALLY#
+func recursive_finder(node, nodename):
+	if node.name == nodename:
+		finder.append(node)
+	if node.get_child_count()>0:
+		for ch in node.get_children():
+			recursive_finder(ch,nodename)
+	var copy = finder.duplicate()
+	finder.clear()
+	return 
+	
+func get_named(nodename: String, suppress: bool = false):
+	var scene 
+	var found_total = 0
+	for scn in SCENES:
+		if !NODES.has(scn):
+			push_warning("NodeFinder: E4 The root node of this object is not registered")
+			return
+		scene = recursive_finder(scn, nodename)
+		found_total += 1
+	
+	if found_total == 0:
+		push_warning("NodeFinder: E11 The node named [ " + nodename + " ]  was not found")
+		return null
+	if found_total > 1:
+		if not suppress:
+			push_warning("NodeFinder: E12 The node named [ " + nodename + " ]  was found multiple times. The results have been returned as an array instead of a node. Calling this function with the second arg as true will suppress this warning.")
+		return scene
+	return scene.front()
 
